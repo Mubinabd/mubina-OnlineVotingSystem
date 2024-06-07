@@ -7,6 +7,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 )
+
 // CreateElection godoc
 // @Summary Create a new election
 // @Description Endpoint for creating a new election
@@ -57,6 +58,7 @@ func (h *HandlerStruct) GetElectionByID(c *gin.Context) {
 	}
 	c.JSON(200, election)
 }
+
 // GetAllElections godoc
 // @Summary Get All Elections
 // @Description Endpoint for getting all elections
@@ -76,6 +78,7 @@ func (h *HandlerStruct) GetAllElections(c *gin.Context) {
 	}
 	c.JSON(200, elections)
 }
+
 // UpdateElection godoc
 // @Summary Update election
 // @Description Endpoint for updating election
@@ -91,7 +94,6 @@ func (h *HandlerStruct) GetAllElections(c *gin.Context) {
 // @Router /election/update [PUT]
 func (h *HandlerStruct) UpdateElection(c *gin.Context) {
 	var election pb.ElectionUpdate
-	
 	if err := c.BindJSON(&election); err != nil {
 		c.JSON(400, gin.H{"Error when binding json": err.Error()})
 		return
@@ -103,6 +105,7 @@ func (h *HandlerStruct) UpdateElection(c *gin.Context) {
 	}
 	c.JSON(200, "Election updated")
 }
+
 // DeleteElection godoc
 // @Summary Delete election
 // @Description Endpoint for deleting election

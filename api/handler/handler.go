@@ -8,7 +8,7 @@ import (
 
 type HandlerStruct struct {
 	Candidate  pb.CandidateServiceClient
-	Election  pb.ElectionServiceClient
+	Election   pb.ElectionServiceClient
 	PublicVote pb.PublicVoteServiceClient
 }
 

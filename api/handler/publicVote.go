@@ -27,7 +27,6 @@ func (h *HandlerStruct) CreatePublicVote(c *gin.Context) {
 		err        error
 	)
 	if err = c.BindJSON(&publicvote); err != nil {
-		fmt.Println(12)
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Error when binding JSON: " + err.Error()})
 		return
 	}

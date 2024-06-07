@@ -2,7 +2,6 @@ package handler
 
 import (
 	"context"
-	"fmt"
 	"net/http"
 
 	pb "project/genproto/public"
@@ -54,9 +53,8 @@ func (h *HandlerStruct) GetCandidateByID(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error when getting candidate: " + err.Error()})
 		return
 	}
-	fmt.Println(1)
 
-	c.IndentedJSON(http.StatusOK, candidate)
+	c.JSON(http.StatusOK, candidate)
 }
 
 // GetAllCandidate godoc

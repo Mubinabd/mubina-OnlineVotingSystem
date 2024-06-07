@@ -1,0 +1,3 @@
+[submodule "voting_submodul"]
+	path = voting_submodul
+	url = git@github.com:mirjalilova/voting_submodul.git
