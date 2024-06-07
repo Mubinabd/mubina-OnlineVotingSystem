@@ -1,0 +1,73 @@
+syntax = "proto3";
+
+option go_package = "genproto/public/";
+
+package protos;
+
+import "protos/party.proto";
+import "protos/void.proto";
+
+service PublicService {
+  rpc Create (Public) returns (Void) {}
+  rpc Get (GetPublicReq) returns (PublicRes) {}
+  rpc GetAll (Filter) returns (GetAllPublicsResponse) {}
+  rpc Update (PublicUpdate) returns (Void) {}
+  rpc Delete(GetByIdReq) returns (Void) {}
+}
+
+message Public {
+  string id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  string birthday = 4;
+  string gender = 5;
+  string nation = 6;
+  string party_id = 7;
+  string created_at = 8;
+  string updated_at = 9;
+  string deleted_at = 10;
+}
+
+message PublicCreate {
+  string first_name = 1;
+  string last_name = 2;
+  string birthday = 3;
+  string gender = 4;
+  string nation = 5;
+  string party_id = 6;
+  string created_at = 7;
+  string updated_at = 8;
+  string deleted_at = 9;
+}
+
+message GetPublicReq {
+  string id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  string age = 4;
+  string gender = 5;
+  string nation = 6;
+  string party_id = 7;
+}
+
+message PublicRes {
+  string id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  string birthday = 4;
+  string gender = 5;
+  string nation = 6;
+  Party party = 7;
+}
+
+message PublicUpdate {
+  string first_name = 1;
+  string last_name = 2;
+  string birthday = 3;
+  string nation = 4;
+  string party_id = 5;
+}
+
+message GetAllPublicsResponse {
+  repeated PublicRes baskets = 1;
+}

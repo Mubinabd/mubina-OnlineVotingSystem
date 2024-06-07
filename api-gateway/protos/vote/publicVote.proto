@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+option go_package = "genproto/public/";
+
+package protos;
+
+import "protos/election.proto";
+import "protos/void.proto";
+import "protos/public.proto";
+import "protos/candidate.proto";
+
+service PublicVoteService{
+    rpc Create(CreatePublicVoteReq) returns (Void){}
+    rpc GetAll(Filter) returns (PublicVotesGetAllResp){}
+}
+
+message PublicVote{
+    string id = 1;
+    Election election = 2;
+    Public public = 3;
+    Candidate candidate = 4;
+}
+
+
+message PublicVoteReq{
+    string election_id = 1;
+    string public_id = 2;
+    string candidate_id = 3;
+}
+
+message CreatePublicVoteReq{
+    string election_id = 1;
+    string public_id = 2;
+    string candidate_id = 3;
+}
+
+message PublicVotesGetAllResp {
+    repeated PublicVote publicvotes = 1;
+}

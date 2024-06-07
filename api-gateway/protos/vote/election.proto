@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+option go_package = "genproto/public/";
+
+package protos;
+
+import "protos/void.proto";
+
+service ElectionService{
+    rpc Create(CreateElectionReq) returns (Void) {}
+    rpc Get(ElectionReq) returns (ElectionReq) {}
+    rpc GetAll(Filter) returns (ElectionsGetAllResp){}
+    rpc Update(ElectionUpdate) returns(Void){}
+    rpc Delete(GetByIdReq) returns (Void) {}
+}
+
+message Election{
+    string id = 1;
+    string name = 2;
+    string date = 3;
+    string createdAt = 4;
+    string updatedAt = 5;
+    string deletedAt = 6;
+}
+
+message CreateElectionReq{
+    string name = 1;
+    string date = 2;
+}
+
+message ElectionReq{
+    string id = 1;
+    string name = 2;
+    string date = 3;
+}
+
+message ElectionUpdate{
+    string name = 1;
+    string date = 2;
+}
+
+
+message ElectionsGetAllResp{
+    repeated ElectionReq elections = 1;
+}
