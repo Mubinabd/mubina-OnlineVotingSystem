@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+option go_package = "genproto/public/";
+
+package protos;
+
+import "protos/void.proto";
+import "protos/election.proto";
+import "protos/public.proto";
+
+service CandidateService{
+    rpc Create(CreateCandidateReq) returns (Void) {}
+    rpc Get(GetCandidate) returns (CandidateRes){}
+    rpc GetAll(Filter) returns(CandidatiesGetAllResp){}
+    rpc Delete(GetByIdReq) returns (Void) {}
+}
+
+message Candidate{
+    string id = 1;
+    string election_id = 2;
+    string public_id = 3;
+    string createdAt = 4;
+    string updatedAt = 5;
+    string deletedAt = 6;
+}
+
+message CreateCandidateReq{
+    string election_id = 1;
+    string public_id = 2;
+}
+
+message GetCandidate{
+    string id = 1;
+    string election_id = 2;
+    string public_id = 3;
+}
+
+message CandidateRes{
+    string id = 1;
+    Election election = 2;
+    Public public = 3;
+}
+
+
+message CandidatiesGetAllResp{
+    repeated CandidateRes candidaties = 1;
+}
