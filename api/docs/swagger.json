@@ -1,13 +1,8 @@
 {
     "swagger": "2.0",
     "info": {
-        "description": "API for managing online voting system resources",
-        "title": "Online Voting System API",
-        "contact": {},
-        "version": "1.0"
+        "contact": {}
     },
-    "host": "localhost:8080",
-    "basePath": "/api/v1",
     "paths": {
         "/Party": {
             "get": {

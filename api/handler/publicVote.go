@@ -3,7 +3,7 @@ package handler
 import (
 	"fmt"
 	"net/http"
-	public "project/genproto/public"
+	public "project/genproto"
 
 	"github.com/gin-gonic/gin"
 )

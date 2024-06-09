@@ -1,4 +1,3 @@
-basePath: /api/v1
 definitions:
   genproto.CandidateRes:
     properties:
@@ -155,12 +154,8 @@ definitions:
     type: object
   genproto.Void:
     type: object
-host: localhost:8080
 info:
   contact: {}
-  description: API for managing online voting system resources
-  title: Online Voting System API
-  version: "1.0"
 paths:
   /Party:
     get:

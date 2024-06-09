@@ -15,6 +15,229 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/Party": {
+            "get": {
+                "description": "Endpoint for getting all Partys",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Party"
+                ],
+                "summary": "Get All Partys",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "name",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "opened_date",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully getted Partys",
+                        "schema": {
+                            "$ref": "#/definitions/genproto.GetAllPartysResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request payload",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Failed to get Partys",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Endpoint for creating a new Party",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Party"
+                ],
+                "summary": "Create a new Party",
+                "parameters": [
+                    {
+                        "description": "Party creation request payload",
+                        "name": "Party",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/genproto.PartyCreate"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully created Party",
+                        "schema": {
+                            "$ref": "#/definitions/genproto.Void"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request payload",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Failed to create Party",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/Party/:id": {
+            "get": {
+                "description": "Endpoint for getting Party",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Party"
+                ],
+                "summary": "Get By Id Party",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "id",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully getted Party",
+                        "schema": {
+                            "$ref": "#/definitions/genproto.CandidateRes"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request payload",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Failed to get Party",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Endpoint for updating Party",
+                "consumes": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Party"
+                ],
+                "summary": "Update Party",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "User ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Party updaing request payload",
+                        "name": "Party",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/genproto.PartyCreate"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully updated Party",
+                        "schema": {
+                            "$ref": "#/definitions/genproto.Void"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request payload",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Failed to update Party",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Endpoint for deleting Party",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Party"
+                ],
+                "summary": "Delete Party",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Party ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully deleted Party",
+                        "schema": {
+                            "$ref": "#/definitions/genproto.Void"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request payload",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Failed to delete Party",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
         "/candidate": {
             "post": {
                 "description": "Endpoint for creating a new candidate",
@@ -375,6 +598,229 @@ const docTemplate = `{
                 }
             }
         },
+        "/public": {
+            "get": {
+                "description": "Endpoint for getting all publics",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Public"
+                ],
+                "summary": "Get All Publics",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "gender",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "nation",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully getted publics",
+                        "schema": {
+                            "$ref": "#/definitions/genproto.GetAllPublicsResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request payload",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Failed to get publics",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Endpoint for creating a new public",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Public"
+                ],
+                "summary": "Create a new public",
+                "parameters": [
+                    {
+                        "description": "Public creation request payload",
+                        "name": "public",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/genproto.PublicCreate"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully created public",
+                        "schema": {
+                            "$ref": "#/definitions/genproto.Void"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request payload",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Failed to create public",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/public/:id": {
+            "get": {
+                "description": "Endpoint for getting public",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Public"
+                ],
+                "summary": "Get By Id Public",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "id",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully getted public",
+                        "schema": {
+                            "$ref": "#/definitions/genproto.CandidateRes"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request payload",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Failed to get public",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Endpoint for updating public",
+                "consumes": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Public"
+                ],
+                "summary": "Update public",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "User ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Public updaing request payload",
+                        "name": "public",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/genproto.PublicCreate"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully updated public",
+                        "schema": {
+                            "$ref": "#/definitions/genproto.Void"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request payload",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Failed to update public",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Endpoint for deleting public",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Public"
+                ],
+                "summary": "Delete public",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Public ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully deleted public",
+                        "schema": {
+                            "$ref": "#/definitions/genproto.Void"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request payload",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Failed to delete public",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
         "/publicvote": {
             "post": {
                 "description": "Endpoint for creating a new publicvote",
@@ -509,10 +955,60 @@ const docTemplate = `{
                 }
             }
         },
+        "genproto.Filter": {
+            "type": "object",
+            "properties": {
+                "limit": {
+                    "type": "integer"
+                },
+                "offset": {
+                    "type": "integer"
+                }
+            }
+        },
+        "genproto.GetAllPartysResponse": {
+            "type": "object",
+            "properties": {
+                "party": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/genproto.PartyRes"
+                    }
+                }
+            }
+        },
+        "genproto.GetAllPublicsResponse": {
+            "type": "object",
+            "properties": {
+                "public": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/genproto.PublicRes"
+                    }
+                }
+            }
+        },
         "genproto.GetByIdReq": {
             "type": "object",
             "properties": {
                 "id": {
+                    "type": "string"
+                }
+            }
+        },
+        "genproto.PartyCreate": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "opened_date": {
+                    "type": "string"
+                },
+                "slogan": {
                     "type": "string"
                 }
             }
@@ -533,6 +1029,29 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "slogan": {
+                    "type": "string"
+                }
+            }
+        },
+        "genproto.PublicCreate": {
+            "type": "object",
+            "properties": {
+                "birthday": {
+                    "type": "string"
+                },
+                "first_name": {
+                    "type": "string"
+                },
+                "gender": {
+                    "type": "string"
+                },
+                "last_name": {
+                    "type": "string"
+                },
+                "nation": {
+                    "type": "string"
+                },
+                "party_id": {
                     "type": "string"
                 }
             }
@@ -596,12 +1115,12 @@ const docTemplate = `{
 
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
-	Version:          "",
-	Host:             "",
-	BasePath:         "",
+	Version:          "1.0",
+	Host:             "localhost:8080",
+	BasePath:         "/api/v1",
 	Schemes:          []string{},
-	Title:            "",
-	Description:      "",
+	Title:            "Online Voting System API",
+	Description:      "API for managing online voting system resources",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
 	LeftDelim:        "{{",

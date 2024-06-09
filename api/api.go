@@ -1,26 +1,26 @@
 package api
 
 import (
-	"project/api/handler"
-	_ "project/docs"
-
-	// "project/api-gateway/middleware"
-
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+	"project/api/handler"
+
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
-// @Title Online Voting System Swagger UI
-// @BasePath /
-// @securityDefinitions.apikey BearerAuth
-// @in header
-// @name role
-
 func NewGin(h *handler.HandlerStruct) *gin.Engine {
-	r := gin.Default()
 
+	r := gin.Default()
 	r.GET("/api/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+	r.Use(cors.New(cors.Config{
+		AllowOrigins:     []string{"*"}, // Adjust for your specific origins
+		AllowMethods:     []string{"GET", "POST", "PUT", "DELETE"},
+		AllowHeaders:     []string{"Origin", "Content-Type", "Accept", "Authorization"},
+		ExposeHeaders:    []string{"Content-Length"},
+		AllowCredentials: true,
+	}))
+
 	cand := r.Group("/candidate")
 	{
 		cand.POST("", h.CreateCandidate)
@@ -28,8 +28,6 @@ func NewGin(h *handler.HandlerStruct) *gin.Engine {
 		cand.GET("/all", h.GetAllCandidaties)
 		cand.DELETE("/:id", h.DeleteCandidate)
 	}
-
-	// r.Use(middleware.AuthMiddleware)
 
 	election := r.Group("/election")
 	{
@@ -44,6 +42,24 @@ func NewGin(h *handler.HandlerStruct) *gin.Engine {
 	{
 		publicVote.POST("", h.CreatePublicVote)
 		publicVote.GET("/all", h.GetAllPublicVotes)
+	}
+
+	party := r.Group("/party")
+	{
+		party.POST("", h.CreateParty)
+		party.GET("/:id", h.GetByIdParty)
+		party.GET("/", h.GetAllParty)
+		party.PUT("/:id", h.UpdateParty)
+		party.DELETE("/:id", h.DeleteParty)
+	}
+
+	public := r.Group("/public")
+	{
+		public.POST("", h.CreatePublic)
+		public.PUT("/:id", h.UpdatePublic)
+		public.GET("/id", h.GetByIdPublic)
+		public.GET("", h.GetAllPublic)
+		public.DELETE("/:id", h.DeletePublic)
 	}
 	return r
 }

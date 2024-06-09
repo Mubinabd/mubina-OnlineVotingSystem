@@ -4,7 +4,7 @@ import (
 	"context"
 	"net/http"
 
-	pb "project/genproto/public"
+	pb "project/genproto"
 
 	"github.com/gin-gonic/gin"
 )
